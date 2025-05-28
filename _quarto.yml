@@ -8,9 +8,9 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - lumalazarini.github.io.qmd
+      - lumalazarini.github.io2.qmd
       - experience.qmd
-      - research.qmd
+      - Research.qmd
       - courses.qmd
 
 format:
