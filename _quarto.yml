@@ -1,5 +1,24 @@
 project:
+  type: website
   title: "lumalazarini.github.io2"
+  
+website:
+  title: "Luma Lazarini"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - lumalazarini.github.io.qmd
+      - experience.qmd
+      - research.qmd
+      - courses.qmd
+
+format:
+  html:
+    theme: minty
+    css: styles.css
+    toc: true
+
 
 editor: visual
 
