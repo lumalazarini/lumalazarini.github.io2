@@ -1,4 +1,37 @@
 ---
-title: "Interests"
+title: "Interests: Learn More About Me!"
 format: html
+toc: false
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: right
+  loop: false
+  css-class: "my-css-class"
 ---
+{{< fa plane >}}  Traveling
+------------------------------------------------------------------------
+Studying abroad in Italy during Fall 2024 gave me the opportunity to fulfill a lifelong dream of exploring Europe. I visited unforgettable places like London, Paris, Nice, Croatia, Ibiza, and many cities across Italy. Below is a glimpse into four months of travel across Europe.
+
+
+------------------------------------------------------------------------
+
+{{< fa music >}}  Music
+------------------------------------------------------------------------
+Music is one of my favorite ways to relax, have fun, and stay grounded. I have a wide-ranging taste that includes R&B, jazz, reggae, soft rock, pop, and hip hop. Browse my profile below to see some of my favorite music. 
+
+
+------------------------------------------------------------------------
+
+{{< fa pizza-slice >}}  Food
+------------------------------------------------------------------------
+Growing up with parents who owned a restaurant and were passionate about trying new foods, I developed a love for exploring new cuisines as well. Here are some of my favorite dishes I've enjoyed this year.
+
+------------------------------------------------------------------------
+
+{{< fa umbrella-beach >}}  Beach
+------------------------------------------------------------------------
+The beach is my happy place. It’s where I go to clear my mind and unwind from daily stress. In Isla Vista, you’ll often find me at Sands Beach, just a short walk from campus. When I’m home in San Diego, I love going to Windansea or Solana Beach, my favorites of all time.
+
+
+

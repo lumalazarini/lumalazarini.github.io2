@@ -26,5 +26,40 @@
     "title": "Research",
     "section": "",
     "text": "Through the EUREKA Program, I interned in Dr. Scott Jasechko’s hydrogeology lab, where I worked on building a 3D model of aquifer units within the Dakota Aquifer system in South Dakota.\nGroundwater is an essential resource, supplying nearly half of the world’s drinking water and much of its irrigation. In South Dakota, over 70% of people rely on groundwater, yet up-to-date maps of aquifers in the region are lacking. My project aimed to help fill that gap.\nI worked with lithological well log data, performing extensive data cleaning in RStudio before modeling the aquifer layers using ArcGIS Pro.\nSome of the code used for the cleaning of data is shown below\n\n---\n#create new distinct file to discover how many unique wells there are\nunique_wells &lt;- all_data %&gt;% \n  distinct(location, .keep_all = TRUE) \n\n# How many aquifer units are represented? What are they? \naquifer_units &lt;- unique(unique_wells$aquifer) # Let's make a vector character string with all of the units\nprint(aquifer_units) # Print the results \n\n# How many wells are there per aquifer unit? \nsummary_wells_aquifer &lt;- unique_wells %&gt;% \n  group_by(aquifer) %&gt;%  # `group_by()` tells R to sort by our category aquifer (the column)\n  summarise(n()) # `summarise()` and `n()` allow us to calculate the n (count) of wells \n\n# How many unique wells do we have in the Dakota Aquifer unit specifically?\ndakota &lt;- unique_wells %&gt;% \n  filter(aquifer == \"DAKOTA\") # Use the `filter()` function to keep only wells that are drilled in the aquifer unit \"Dakota\" \n\n# Tidy the file for ArcPro (limit the number of columns) \ndakota_arcpro &lt;- dakota %&gt;% \n  select(location, aquifer, latitude_dd, longitude_dd) \n\n# Use `write_tsv()` to write the file \n# Use `here()` to tell R where to write the file (in our 'data_output' folder)\n\nwrite_tsv(dakota_arcpro, here::here (\"data_output\", \"dakota_wells.txt\"))\n\n\n---\n#Exploring the data\n#How can we get more unique wells (if needed) for the Dakota Aquifer unit (hint: the 'description' column)? \n\ndakota_all &lt;- all_data %&gt;% \n  mutate(keep = ifelse(str_detect(all_data$description, \"DAK\"), \"keep\", NA)) #detect \"dak\" in well description and create new colun categorized either \"keep\" or NA\n\n# How many observations is this? \ndakota_obs &lt;- dakota_all %&gt;% \n  filter(keep == \"keep\") # use the `filter()` function to keep only wells that we identified that have the Dakota in their description \n\n# How many unique wells do these observations represent? \ndakota_wells &lt;- dakota_obs %&gt;% \n  distinct(location, .keep_all = TRUE)\n\n#Removing wells from the obs files that do not have a location, latitude, or longitude\n\ndak_tidy1 &lt;- dakota_obs %&gt;% \n  filter(!is.na(location)) %&gt;% \n  filter(!is.na(latitude_dd)) %&gt;% \n  filter(!is.na(total_depth))\n\n#Tidying the information even more by selecting only columns that will be useful for our project\n#Renaming the location column to well_id for a better description\n\ndak_tidy2 &lt;- dak_tidy1 %&gt;% \n  select(location, latitude_dd, longitude_dd, drill_date, aquifer, ground_elevation, total_depth, begin_depth, end_depth, description) %&gt;%\n  rename(well_id=location)\n\n#Grouping by unique well ID's to group the locations that have dakota observations in multiple layers\n#Creating new columns that display the top and bottom of the wells and locations\n\ndak_tidy3 &lt;- dak_tidy2 %&gt;% \n  group_by(well_id) %&gt;% \n  mutate(dak_top = min(begin_depth)) %&gt;% \n  mutate(dak_bottom = max( end_depth))\n\n#Gathering well locations (one row represents one well)\n\ndak_tidy4 &lt;- dak_tidy3 %&gt;% \n  distinct(well_id, .keep_all = TRUE)\n\n#Determining whether the well was drilled through the aquifer (so we have an accurate start and end) or if the bottom of the well is when drilling ended\ndak_tidy5 &lt;- dak_tidy4 %&gt;% \n  mutate(end_dak= ifelse(total_depth == dak_bottom, \"TRUE\", \"FALSE\" ))\n\nOur work resulted in a 3D rendering of three major aquifer units, which marks a valuable starting point for future research on water resources in the region. If you want to learn more about this research, visit this site"
+  },
+  {
+    "objectID": "lumalazarini.github.io2.html",
+    "href": "lumalazarini.github.io2.html",
+    "title": "Interests: Learn More About Me!",
+    "section": "",
+    "text": "Studying abroad in Italy during Fall 2024 gave me the opportunity to fulfill a lifelong dream of exploring Europe. I visited unforgettable places like London, Paris, Nice, Croatia, Ibiza, and many cities across Italy. Below is a glimpse into four months of travel across Europe."
+  },
+  {
+    "objectID": "lumalazarini.github.io2.html#traveling",
+    "href": "lumalazarini.github.io2.html#traveling",
+    "title": "Interests: Learn More About Me!",
+    "section": "",
+    "text": "Studying abroad in Italy during Fall 2024 gave me the opportunity to fulfill a lifelong dream of exploring Europe. I visited unforgettable places like London, Paris, Nice, Croatia, Ibiza, and many cities across Italy. Below is a glimpse into four months of travel across Europe."
+  },
+  {
+    "objectID": "lumalazarini.github.io2.html#food",
+    "href": "lumalazarini.github.io2.html#food",
+    "title": "Interests: Learn More About Me!",
+    "section": " Food",
+    "text": "Food\nGrowing up with parents who owned a restaurant and were passionate about trying new foods, I developed a love for exploring new cuisines as well. Here are some of my favorite dishes I’ve enjoyed this year."
+  },
+  {
+    "objectID": "lumalazarini.github.io2.html#beach",
+    "href": "lumalazarini.github.io2.html#beach",
+    "title": "Interests: Learn More About Me!",
+    "section": " Beach",
+    "text": "Beach\nThe beach is my happy place. It’s where I go to clear my mind and unwind from daily stress. In Isla Vista, you’ll often find me at Sands Beach, just a short walk from campus. When I’m home in San Diego, I love going to Windansea or Solana Beach, my favorites of all time."
+  },
+  {
+    "objectID": "lumalazarini.github.io2.html#music",
+    "href": "lumalazarini.github.io2.html#music",
+    "title": "Interests: Learn More About Me!",
+    "section": " Music",
+    "text": "Music\nMusic is one of my favorite ways to relax, have fun, and stay grounded. I have a wide-ranging taste that includes R&B, jazz, reggae, soft rock, pop, and hip hop. Browse my profile below to see some of my favorite music."
   }
 ]
