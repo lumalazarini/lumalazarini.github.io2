@@ -96,4 +96,4 @@ dak_tidy5 <- dak_tidy4 %>%
   mutate(end_dak= ifelse(total_depth == dak_bottom, "TRUE", "FALSE" ))
 ```
 
-Our work resulted in a 3D rendering of three major aquifer units, which marks a valuable starting point for future research on water resources in the region. If you want to learn more about this research, visit this [site](https://lbraconilazarini.wixsite.com/3d-model-dakota-aqui/about)
+Our work resulted in a 3D rendering of three major aquifer units, which marks a valuable starting point for future research on water resources in the region. If you want to learn more about this research, visit this [site](https://lbraconilazarini.wixsite.com/3d-model-dakota-aqui)
