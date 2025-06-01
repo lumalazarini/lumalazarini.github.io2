@@ -9,11 +9,14 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - experience.qmd
-      - Research.qmd
-      - courses.qmd
+      - href: lumalazarini.github.io2.qmd
+        text: Interests
+      - href: experience.qmd
+        text: Research
+      - href: courses.qmd
+        text: Courses
       - href: resume.pdf
-      - text: Resume
+        text: Resume
     page-footer: 
       background: dark
 format:
