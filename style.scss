@@ -1,0 +1,24 @@
+/*-- scss:defaults --*/
+
+
+//Import font-size
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+// Colors
+
+$ash-grey: #b8ad9e;
+$grey:#a79d91;
+$slate: #8d8376;
+$dark-grey: #696969;
+$off-white: #e7e3dd;
+$brown: #8f6e58;
+$black: 	#000000;
+$dark-brown:	#603e20;
+
+// Base document colors
+$navbar-bg: $ash-grey; // navbar
+$navbar-fg: $brown; // navbar foreground elements
+$navbar-hl: $dark-brown; // highlight color when hovering over navbar links
+$body-bg: $off-white; // page background 
+$body-color: $off-white; // page text 
+$footer-bg: $ash-grey;

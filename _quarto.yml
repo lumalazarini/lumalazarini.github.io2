@@ -21,7 +21,8 @@ website:
       background: dark
 format:
   html:
-    theme: solar
+    theme: 
+      - style.scss
     css: styles.css
     toc: true
     page-layout: full
