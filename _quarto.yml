@@ -17,6 +17,7 @@ website:
         text: Courses
       - href: resume.pdf
         text: Resume
+        target: _blank
     page-footer: 
       background: dark
 format:
@@ -24,6 +25,7 @@ format:
     theme: 
       - style.scss
     css: styles.css
+    fontcolor: $brown
     toc: true
     page-layout: full
 
