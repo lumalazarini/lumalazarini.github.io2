@@ -1,4 +1,9 @@
 ---
 title: "Courses"
 format: html
+toc: false
 ---
+
+### Groundwater Analyses and the Environment (ENVS193 GW)
+
+This course introduced the fundamentals of groundwater hydrology, including the hydrologic cycle, aquifer geology, and principles of groundwater flow and storage. I explored groundwater management strategies through California policies, applied quantitative methods to analyze basin conditions, and gained an introduction to ArcGIS for mapping aquifers.

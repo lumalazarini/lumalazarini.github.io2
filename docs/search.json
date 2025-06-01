@@ -82,5 +82,19 @@
     "title": "Interests: Learn More About Me!",
     "section": " Crocheting",
     "text": "Crocheting\nI started crocheting four years ago as a creative way to unwind and stay present and it’s become one of my favorite pastimes! I enjoy crocheting at the beach, in the park, or during long car and plane rides. Some of the things I’ve made are shirts, bags, and beanies – check out some of my creations below."
+  },
+  {
+    "objectID": "courses.html",
+    "href": "courses.html",
+    "title": "Courses",
+    "section": "",
+    "text": "Groundwater Analyses and the Environment (ENVS193 GW)\nThis course introduced the fundamentals of groundwater hydrology, including the hydrologic cycle, aquifer geology, and principles of groundwater flow and storage. I explored groundwater management strategies through California policies, applied quantitative methods to analyze basin conditions, and gained an introduction to ArcGIS for mapping aquifers."
+  },
+  {
+    "objectID": "courses.html#groundwater-analyses-and-the-environment-envs193-gw",
+    "href": "courses.html#groundwater-analyses-and-the-environment-envs193-gw",
+    "title": "Courses",
+    "section": "",
+    "text": "This course introduced the fundamentals of groundwater hydrology, including the hydrologic cycle, aquifer geology, and principles of groundwater flow and storage. I explored groundwater management strategies through California policies, applied quantitative methods to analyze basin conditions, and gained an introduction to ArcGIS for mapping aquifers."
   }
 ]
