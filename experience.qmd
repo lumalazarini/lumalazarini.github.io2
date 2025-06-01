@@ -1,19 +1,22 @@
 ---
-title: "Experience"
+title: "Research"
 format: html
 ---
 
 ## Eureka Scholars Program
 
-Through the [EUREKA Program] (https://eureka.csep.ucsb.edu/), I interned in Dr. [Scott Jasechko’s] (https://bren.ucsb.edu/people/scott-jasechko) hydrogeology lab, where I worked on building a 3D model of aquifer units within the Dakota Aquifer system in South Dakota.
+Through the [EUREKA Program](https://eureka.csep.ucsb.edu/), I interned in Dr. [Scott Jasechko’s](https://bren.ucsb.edu/people/scott-jasechko) hydrogeology lab, where I worked on building a 3D model of aquifer units within the Dakota Aquifer system in South Dakota.
 
 Groundwater is an essential resource, supplying nearly half of the world’s drinking water and much of its irrigation. In South Dakota, over 70% of people rely on groundwater, yet up-to-date maps of aquifers in the region are lacking. My project aimed to help fill that gap.
 
-I worked with lithological well log data, performing extensive data cleaning in RStudio before modeling the aquifer layers using ArcGIS Pro. 
+I worked with lithological well log data, performing extensive data cleaning in RStudio before modeling the aquifer layers using ArcGIS Pro.
 
 Some of the code used for the cleaning of data is shown below
 
 ```{r}
+#| output: false
+#| eval: false
+---
 #create new distinct file to discover how many unique wells there are
 unique_wells <- all_data %>% 
   distinct(location, .keep_all = TRUE) 
@@ -43,6 +46,9 @@ write_tsv(dakota_arcpro, here::here ("data_output", "dakota_wells.txt"))
 ```
 
 ```{r}
+#| output: false
+#| eval: false
+---
 #Exploring the data
 #How can we get more unique wells (if needed) for the Dakota Aquifer unit (hint: the 'description' column)? 
 
@@ -89,4 +95,6 @@ dak_tidy5 <- dak_tidy4 %>%
   mutate(end_dak= ifelse(total_depth == dak_bottom, "TRUE", "FALSE" ))
 ```
 
-Our work resulted in a 3D rendering of three major aquifer units, which marks a valuable starting point for future research on water resources in the region. If you want to learn more about this research, visit this [site] https://lbraconilazarini.wixsite.com/3d-model-dakota-aqui/about 
+Our work resulted in a 3D rendering of three major aquifer units, which marks a valuable starting point for future research on water resources in the region. If you want to learn more about this research, visit this [site](https://lbraconilazarini.wixsite.com/3d-model-dakota-aqui/about)
+
+

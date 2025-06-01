@@ -12,6 +12,8 @@ website:
       - experience.qmd
       - Research.qmd
       - courses.qmd
+      - href: resume.pdf
+      - text: Resume
     page-footer: 
       background: dark
 format:
