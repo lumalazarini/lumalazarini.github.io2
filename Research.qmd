@@ -2,3 +2,97 @@
 title: "Research"
 format: html
 ---
+
+## Eureka Scholars Program
+
+Through the [EUREKA Program](https://eureka.csep.ucsb.edu/), I interned in Dr. [Scott Jasechko’s](https://bren.ucsb.edu/people/scott-jasechko) hydrogeology lab, where I worked on building a 3D model of aquifer units within the Dakota Aquifer system in South Dakota.
+
+Groundwater is an essential resource, supplying nearly half of the world’s drinking water and much of its irrigation. In South Dakota, over 70% of people rely on groundwater, yet up-to-date maps of aquifers in the region are lacking. My project aimed to help fill that gap.
+
+I worked with lithological well log data, performing extensive data cleaning in RStudio before modeling the aquifer layers using ArcGIS Pro.
+
+Some of the code used for the cleaning of data is shown below
+
+```{r}
+#| output: false
+#| eval: false
+---
+#create new distinct file to discover how many unique wells there are
+unique_wells <- all_data %>% 
+  distinct(location, .keep_all = TRUE) 
+
+# How many aquifer units are represented? What are they? 
+aquifer_units <- unique(unique_wells$aquifer) # Let's make a vector character string with all of the units
+print(aquifer_units) # Print the results 
+
+# How many wells are there per aquifer unit? 
+summary_wells_aquifer <- unique_wells %>% 
+  group_by(aquifer) %>%  # `group_by()` tells R to sort by our category aquifer (the column)
+  summarise(n()) # `summarise()` and `n()` allow us to calculate the n (count) of wells 
+
+# How many unique wells do we have in the Dakota Aquifer unit specifically?
+dakota <- unique_wells %>% 
+  filter(aquifer == "DAKOTA") # Use the `filter()` function to keep only wells that are drilled in the aquifer unit "Dakota" 
+
+# Tidy the file for ArcPro (limit the number of columns) 
+dakota_arcpro <- dakota %>% 
+  select(location, aquifer, latitude_dd, longitude_dd) 
+
+# Use `write_tsv()` to write the file 
+# Use `here()` to tell R where to write the file (in our 'data_output' folder)
+
+write_tsv(dakota_arcpro, here::here ("data_output", "dakota_wells.txt"))
+
+```
+
+```{r}
+#| output: false
+#| eval: false
+---
+#Exploring the data
+#How can we get more unique wells (if needed) for the Dakota Aquifer unit (hint: the 'description' column)? 
+
+dakota_all <- all_data %>% 
+  mutate(keep = ifelse(str_detect(all_data$description, "DAK"), "keep", NA)) #detect "dak" in well description and create new colun categorized either "keep" or NA
+
+# How many observations is this? 
+dakota_obs <- dakota_all %>% 
+  filter(keep == "keep") # use the `filter()` function to keep only wells that we identified that have the Dakota in their description 
+
+# How many unique wells do these observations represent? 
+dakota_wells <- dakota_obs %>% 
+  distinct(location, .keep_all = TRUE)
+
+#Removing wells from the obs files that do not have a location, latitude, or longitude
+
+dak_tidy1 <- dakota_obs %>% 
+  filter(!is.na(location)) %>% 
+  filter(!is.na(latitude_dd)) %>% 
+  filter(!is.na(total_depth))
+
+#Tidying the information even more by selecting only columns that will be useful for our project
+#Renaming the location column to well_id for a better description
+
+dak_tidy2 <- dak_tidy1 %>% 
+  select(location, latitude_dd, longitude_dd, drill_date, aquifer, ground_elevation, total_depth, begin_depth, end_depth, description) %>%
+  rename(well_id=location)
+
+#Grouping by unique well ID's to group the locations that have dakota observations in multiple layers
+#Creating new columns that display the top and bottom of the wells and locations
+
+dak_tidy3 <- dak_tidy2 %>% 
+  group_by(well_id) %>% 
+  mutate(dak_top = min(begin_depth)) %>% 
+  mutate(dak_bottom = max( end_depth))
+
+#Gathering well locations (one row represents one well)
+
+dak_tidy4 <- dak_tidy3 %>% 
+  distinct(well_id, .keep_all = TRUE)
+
+#Determining whether the well was drilled through the aquifer (so we have an accurate start and end) or if the bottom of the well is when drilling ended
+dak_tidy5 <- dak_tidy4 %>% 
+  mutate(end_dak= ifelse(total_depth == dak_bottom, "TRUE", "FALSE" ))
+```
+
+Our work resulted in a 3D rendering of three major aquifer units, which marks a valuable starting point for future research on water resources in the region. If you want to learn more about this research, visit this [site](https://lbraconilazarini.wixsite.com/3d-model-dakota-aqui/about)

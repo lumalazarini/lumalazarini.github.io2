@@ -11,7 +11,7 @@ website:
         text: Home
       - href: lumalazarini.github.io2.qmd
         text: Interests
-      - href: experience.qmd
+      - href: Research.qmd
         text: Research
       - href: courses.qmd
         text: Courses
