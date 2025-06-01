@@ -9,14 +9,14 @@ about:
   image-width: 17em
   links:
     - text: LinkedIn
-      href: www.linkedin.com/in/luma-lazarini-06a614361
+      href: https://www.linkedin.com/in/luma-lazarini-06a614361/
     - text: GitHub
       href: https://github.com/lumalazarini
     - text: Email
-      href: lbraconilazarini@ucsb.edu
+      href: mailto:lbraconilazarini@ucsb.edu
 ---
 
 ## About me
 
-I’m Luma, a third-year Environmental Studies B.S. student at UC Santa Barbara. I’m passionate about water resources, sustainability, ocean conservation, and using data analysis to better understand environmental systems. Outside of academics, you’ll usually find me at the beach, crocheting, or spending time with friends. Feel free to explore my site to learn more about what I do and what I care about!
+I’m Luma, a third-year Environmental Studies B.S. student at UC Santa Barbara. I’m passionate about water resources, sustainability, ocean conservation, and data analysis. Outside of academics, you’ll usually find me at the beach, crocheting, or spending time with friends. Feel free to explore my site to learn more about what I do and what I care about!
 

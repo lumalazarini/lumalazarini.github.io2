@@ -9,17 +9,16 @@ lightbox:
   loop: false
   css-class: "my-css-class"
 ---
+
 {{< fa plane >}}  Traveling
 ------------------------------------------------------------------------
 Studying abroad in Italy during Fall 2024 gave me the opportunity to fulfill a lifelong dream of exploring Europe. I visited unforgettable places like London, Paris, Nice, Croatia, Ibiza, and many cities across Italy. Below is a glimpse into four months of travel across Europe.
-
 
 ------------------------------------------------------------------------
 
 {{< fa music >}}  Music
 ------------------------------------------------------------------------
 Music is one of my favorite ways to relax, have fun, and stay grounded. I have a wide-ranging taste that includes R&B, jazz, reggae, soft rock, pop, and hip hop. Browse my profile below to see some of my favorite music. 
-
 
 ------------------------------------------------------------------------
 
