@@ -1,6 +1,19 @@
 ---
-title: "Welcome"
+title: "Luma Lazarini"
 format: html
+image: media_headshot.jpeg
+toc: false
+about: 
+template: jolla
+  image-shape: round
+  image-width: 17em
+links:
+    - text: LinkedIn
+      href: www.linkedin.com/in/luma-lazarini-06a614361
+    - text: GitHub
+      href: https://github.com/lumalazarini
+    - text: Email
+      href: lbraconilazarini@ucsb.edu
 ---
 
 This is my Quarto Website template!
