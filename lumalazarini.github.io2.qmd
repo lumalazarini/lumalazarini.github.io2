@@ -1,5 +1,5 @@
 ---
-title: "Interests: Learn More About Me!"
+title: "Interests and Hobbies: Learn More About Me!"
 format: html
 toc: false
 lightbox:
@@ -14,6 +14,33 @@ lightbox:
 
 Studying abroad in Italy during Fall 2024 gave me the opportunity to fulfill a lifelong dream of exploring Europe. I visited unforgettable places like London, Paris, Nice, Croatia, Ibiza, and many cities across Italy. Below is a glimpse into four months of travel across Europe.
 
+::: {layout="[[1, 1, 1, 1]]"} 
+![](media/cinqueterre.jpeg){group="trip"
+description="Cinque Terre, Italy"}
+
+![](media/croatia.jpeg){group="trip"
+description="Dubrovnik, Croatia"}
+
+![](media/croatia_cats.jpeg){group="trip"
+description="Cats in Croatia!"}
+
+![](media/eifelltower.jpeg){group="trip"
+description="On top of the Eifell Tower!"}
+:::
+
+::: {layout="[[1, 1, 1, 1]]"} 
+![](media/versailles.jpeg){group="trip"
+description="Palace of Versailles, France"}
+
+![](media/venice.jpeg){group="trip"
+description="Venice, Italy"}
+
+![](media/rio.jpg){group="trip"
+description="Rio de Janeiro, Brazil"}
+
+![](media/vitoria.jpeg){group="trip"
+description="Vitoria, Brazil- My hometown!"}
+:::
 ------------------------------------------------------------------------
 
 ## {{< fa music >}} Music
