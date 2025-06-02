@@ -59,3 +59,15 @@ I started crocheting four years ago as a creative way to unwind and stay present
 ## {{< fa umbrella-beach >}} Beach
 
 The beach is my happy place. It’s where I go to clear my mind and unwind from daily stress. In Isla Vista, you’ll often find me at Sands Beach, just a short walk from campus. When I’m home in San Diego, I love going to Windansea or Solana Beach, my favorites of all time.
+
+::: {layout="[[1, 1, 1]]"} 
+![](media/sands.jpeg){group="Beach"
+description="Sands Beach, Isla Vista"}
+
+![](media/solana.jpg){group="Beach"
+description="Solana Beach, San Diego"}
+
+![](media/windansea.jpeg){group="Beach"
+description="Windansea Beach, San Diego"}
+
+:::
