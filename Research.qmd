@@ -108,7 +108,14 @@ dak_bot <- dak_tidy5 %>%
   filter(end_dak == "FALSE")
 ```
 
-Files were then tidied and prepared for mapping in ArcGIS Pro. Once the cleaned and formatted data were finalized, we brought them into ArcGIS Pro to visualize the aquifer units. We repeated this process for eight aquifer units, ultimately selecting three for the final model based on data quality and completeness.
+Files were then tidied and prepared for mapping in ArcGIS Pro. Below is an example of the file including dakota bottoms for mapping. This file only includes the well ID, latitude, longitude, and the height the aquifer bottom was recorded in feet. 
+
+The files were then tidied and prepared for mapping in ArcGIS Pro. Below is an example of one of the data frames used for mapping the Dakota aquifer bottoms. This file includes only the well ID, latitude, longitude, and the recorded depth (in feet) of the aquifer bottom. It’s important to keep the files simple and clean so that ArcGIS doesn’t misread or have issues processing the data.
+
+![](media/dak_bottoms.jpg)
+
+
+Once the cleaned and formatted data were finalized, we brought them into ArcGIS Pro to visualize the aquifer units. We repeated this process for eight aquifer units, ultimately selecting three for the final model based on data quality and completeness.
 
 Our work resulted in a 3D rendering of three major aquifer units, which marks a valuable starting point for future research on water resources in the region. The final maps are pictured below.
 
@@ -121,7 +128,6 @@ description="Top Layer of Codell Aquifer Unit"}
 
 ![](media/niobrara_tops.jpg){group="Research"
 description="Top Layer of Niobrara Aquifer Unit"}
-
 :::
 
 ::: {layout="[[1, 1, 1]]"} 
@@ -133,9 +139,9 @@ description="Bottom Layer of Codell Aquifer Unit"}
 
 ![](media/niobrara_bottoms.jpg){group="Research"
 description="Bottom Layer of Niobrara Aquifer Unit"}
-
 :::
 
-If you'd like to learn more about this research, read this research poster or visit this [site](https://lbraconilazarini.wixsite.com/3d-model-dakota-aqui)
+
+If you’d like to learn more about this research, feel free to explore the research poster below or visit this [site](https://lbraconilazarini.wixsite.com/3d-model-dakota-aqui)
 
 <embed src="media/poster.pdf" type="application/pdf" width="1200" height="800">
