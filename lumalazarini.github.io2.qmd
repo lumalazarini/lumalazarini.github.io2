@@ -1,5 +1,5 @@
 ---
-title: "Interests and Hobbies: Learn More About Me!"
+title: "Interests and Hobbies"
 format: html
 toc: false
 lightbox:
@@ -14,71 +14,62 @@ lightbox:
 
 Music is one of my favorite ways to relax, have fun, and stay grounded. I have a wide-ranging taste that includes R&B, jazz, reggae, soft rock, pop, and hip hop. Check out the playlist below to see some of my favorite music.
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/35cJ2lkFfmFFXDldwfNQD3?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/35cJ2lkFfmFFXDldwfNQD3?utm_source=generator&amp;theme=0" width="100%" height="352" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+
+</iframe>
+
 ------------------------------------------------------------------------
 
 ## {{< fa mitten >}} Crocheting
 
 I started crocheting four years ago as a creative way to unwind and stay present and it's become one of my favorite pastimes! I enjoy crocheting at the beach, in the park, or during long car and plane rides. Some of the things I’ve made are shirts, bags, and beanies – check out my most recent and ongoing creations below.
 
-::: {layout="[[1, 1, 1]]"} 
-![](media/crochet1.jpeg){group="Crochet"
-description="Cropped flower sweater!"}
+::: {layout="[[1, 1, 1]]"}
+![](media/crochet1.jpeg){group="Crochet" description="Cropped flower sweater!"}
 
-![](media/crochet.jpeg){group="Crochet"
-description="Flower patch tote! In progress..."}
+![](media/crochet.jpeg){group="Crochet" description="Flower patch tote! In progress..."}
 
-![](media/crochet3.jpeg){group="Crochet"
-description="Cover-up pants! In progress..."}
-
+![](media/crochet3.jpeg){group="Crochet" description="Cover-up pants! In progress..."}
 :::
+
 ------------------------------------------------------------------------
 
 ## {{< fa umbrella-beach >}} Beach
 
 The beach is my happy place. It’s where I go to clear my mind and unwind from daily stress. In Isla Vista, you’ll often find me at Sands Beach, just a short walk from campus. When I’m home in San Diego, I love going to Windansea or Solana Beach, my favorites of all time.
 
-::: {layout="[[1, 1, 1]]"} 
-![](media/sands.jpg){group="Beach"
-description="Sands Beach, Isla Vista"}
+::: {layout="[[1, 1, 1]]"}
+![](media/sands.jpg){group="Beach" description="Sands Beach, Isla Vista"}
 
-![](media/solana.jpg){group="Beach"
-description="Solana Beach, San Diego"}
+![](media/solana.jpg){group="Beach" description="Solana Beach, San Diego"}
 
-![](media/windansea.jpeg){group="Beach"
-description="Windansea Beach, San Diego"}
-
+![](media/windansea.jpeg){group="Beach" description="Windansea Beach, San Diego"}
 :::
+
+------------------------------------------------------------------------
 
 ## {{< fa plane >}} Traveling
 
 Studying abroad in Italy during Fall 2024 gave me the opportunity to fulfill a lifelong dream of exploring Europe. I visited unforgettable places like London, Paris, Nice, Croatia, Ibiza, and many cities across Italy. Below is a glimpse into four months of travel across Europe.
 
-::: {layout="[[1, 1, 1, 1]]"} 
-![](media/cinqueterre.jpeg){group="trip"
-description="Cinque Terre, Italy"}
+::: {layout="[[1, 1, 1, 1]]"}
+![](media/cinqueterre.jpeg){group="trip" description="Cinque Terre, Italy"}
 
-![](media/croatia.jpeg){group="trip"
-description="Dubrovnik, Croatia"}
+![](media/croatia.jpeg){group="trip" description="Dubrovnik, Croatia"}
 
-![](media/croatia_cats.jpeg){group="trip"
-description="Cats in Croatia!"}
+![](media/croatia_cats.jpeg){group="trip" description="Cats in Croatia!"}
 
-![](media/eifelltower.jpeg){group="trip"
-description="At the top of the Eifell Tower!"}
+![](media/eifelltower.jpeg){group="trip" description="At the top of the Eifell Tower!"}
 :::
 
-::: {layout="[[1, 1, 1, 1]]"} 
-![](media/versailles.jpeg){group="trip"
-description="Palace of Versailles, France"}
+::: {layout="[[1, 1, 1, 1]]"}
+![](media/versailles.jpeg){group="trip" description="Palace of Versailles, France"}
 
-![](media/venice.jpeg){group="trip"
-description="Venice, Italy"}
+![](media/venice.jpeg){group="trip" description="Venice, Italy"}
 
-![](media/rio.jpg){group="trip"
-description="Rio de Janeiro, Brazil"}
+![](media/rio.jpg){group="trip" description="Rio de Janeiro, Brazil"}
 
-![](media/vitoria.jpeg){group="trip"
-description="Vitoria, Brazil- My hometown!"}
+![](media/vitoria.jpeg){group="trip" description="Vitoria, Brazil- My hometown!"}
 :::
+
 ------------------------------------------------------------------------
