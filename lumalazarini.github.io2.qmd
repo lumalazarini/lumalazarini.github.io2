@@ -52,8 +52,13 @@ Music is one of my favorite ways to relax, have fun, and stay grounded. I have a
 
 ## {{< fa mitten >}} Crocheting
 
-I started crocheting four years ago as a creative way to unwind and stay present and it's become one of my favorite pastimes! I enjoy crocheting at the beach, in the park, or during long car and plane rides. Some of the things I’ve made are shirts, bags, and beanies – check out some of my creations below.
+I started crocheting four years ago as a creative way to unwind and stay present and it's become one of my favorite pastimes! I enjoy crocheting at the beach, in the park, or during long car and plane rides. Some of the things I’ve made are shirts, bags, and beanies – check out my most recent and ongoing creations below.
 
+::: {layout="[[1, 1, 1]]"} 
+![](media/crochet1.jpeg){group="Crochet"description="Cropped flower sweater!"}
+![](media/crochet2.jpeg){group="Crochet"description="Flower patch tote! In progress..."}
+![](media/crochet3.jpeg){group="Crochet"description="Cover-up pants! In progress..."}
+:::
 ------------------------------------------------------------------------
 
 ## {{< fa umbrella-beach >}} Beach
