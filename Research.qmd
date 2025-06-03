@@ -138,4 +138,4 @@ description="Bottom Layer of Niobrara Aquifer Unit"}
 
 If you'd like to learn more about this research, read this research poster or visit this [site](https://lbraconilazarini.wixsite.com/3d-model-dakota-aqui)
 
-<embed src="media/poster.pdf" type="application/pdf" width="600" height="400">
+<embed src="media/poster.pdf" type="application/pdf" width="1200" height="800">

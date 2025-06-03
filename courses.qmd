@@ -4,10 +4,38 @@ format: html
 toc: false
 ---
 
-### Groundwater Analyses and the Environment (ENVS193 GW)
-
-This course introduced the fundamentals of groundwater hydrology, including the hydrologic cycle, aquifer geology, and principles of groundwater flow and storage. I explored groundwater management strategies through California policies, applied quantitative methods to analyze basin conditions, and gained an introduction to ArcGIS for mapping aquifers.
-
 ### Statistics for Environmental Science (ENVS 193DS)
 
-This course introduced concepts in probability, statistical inference, and hypothesis testing through the lens of environmental science. I learned how to clean, analyze, and visualize data using R and RStudio. I also developed skills in interpreting statistical results, evaluating assumptions, and clearly communicating findings, both visually and in writing, making this course especially relevant for data-driven environmental work.
+This course introduced concepts in probability, statistical inference, and hypothesis testing through the lens of environmental science. I learned how to clean, analyze, and visualize data using R and RStudio. I also developed skills in interpreting statistical results, evaluating assumptions, and clearly communicating findings, both visually and in writing, making this course especially relevant for data-driven environmental work. Attached below are some of the types of data visualizations I learned to create.
+
+::: {layout="[[1, 1]]"}
+
+![](media/ds1.jpeg){group="193ds"
+description=""}
+
+![](media/ds22.jpeg){group="yum"
+description="Homemade Gumbo."}
+
+:::
+
+::: {layout="[[1, 1]]"}
+![](media/ds3.jpeg){group="yum"
+description="Korean corn dogs."}
+
+![](media/ds4.jpeg){group="yum"
+description="Thai tea crepe cake."}
+
+:::
+
+### Groundwater Analyses and the Environment (ENVS193 GW)
+
+This course introduced the fundamentals of groundwater hydrology, including the hydrologic cycle, aquifer geology, and principles of groundwater flow and storage. I explored groundwater management strategies through California policies, applied quantitative methods to analyze basin conditions, and gained an introduction to ArcGIS for mapping aquifers. Attached below are examples of mapping assignments done in this class. 
+
+::: {layout="[[1, 1]]"} 
+![](media/193gw.jpeg){group="193gw"
+description=""}
+
+![](media/193gw2.jpeg){group="193gw"
+description=""}
+
+:::
