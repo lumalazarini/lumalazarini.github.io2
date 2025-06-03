@@ -54,10 +54,27 @@ Music is one of my favorite ways to relax, have fun, and stay grounded. I have a
 
 I started crocheting four years ago as a creative way to unwind and stay present and it's become one of my favorite pastimes! I enjoy crocheting at the beach, in the park, or during long car and plane rides. Some of the things I’ve made are shirts, bags, and beanies – check out my most recent and ongoing creations below.
 
+::: {layout="[[1, 1, 1, 1]]"} 
+![](images-food/yum.JPEG){group="FOOD"
+description="Homemade Tostadas."}
+
+![](images-food/thai.JPEG){group="FOOD"
+description="Yellow Thai curry served with fried chicken and blue rain."}
+
+![](images-food/orzo.JPEG){group="FOOD"
+description="Spicy tomato orzo served with vegetables and Italian meatballs"}
+
+![](images-food/noodle.JPEG){group="yum"
+description="An attempt to recreate a Vietnamese lemongrass beef vermicelli noodle bowl "}
+
+:::
 ::: {layout="[[1, 1, 1]]"} 
-![](media/crochet1.jpeg){group="Crochet"description="Cropped flower sweater!"}
-![](media/crochet2.jpeg){group="Crochet"description="Flower patch tote! In progress..."}
-![](media/crochet3.jpeg){group="Crochet"description="Cover-up pants! In progress..."}
+![](media/crochet1.jpeg){group="Crochet"
+description="Cropped flower sweater!"}
+![](media/crochet2.jpeg){group="Crochet"
+description="Flower patch tote! In progress..."}
+![](media/crochet3.jpeg){group="Crochet"
+description="Cover-up pants! In progress..."}
 :::
 ------------------------------------------------------------------------
 
