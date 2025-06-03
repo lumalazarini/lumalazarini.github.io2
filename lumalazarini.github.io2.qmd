@@ -41,7 +41,7 @@ The beach is my happy place. It’s where I go to clear my mind and unwind from 
 ::: {layout="[[1, 1, 1]]"}
 ![](media/sands.jpg){group="Beach" description="Sands Beach, Isla Vista"}
 
-![](media/solana.jpg){group="Beach" description="Solana Beach, San Diego"}
+![](media/newsolana.jpeg){group="Beach" description="Solana Beach, San Diego"}
 
 ![](media/windansea.jpeg){group="Beach" description="Windansea Beach, San Diego"}
 :::
