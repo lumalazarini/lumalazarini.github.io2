@@ -9,17 +9,6 @@ lightbox:
   loop: false
   css-class: "my-css-class"
 ---
-
-## {{< fa music >}} Music
-
-Music is one of my favorite ways to relax, have fun, and stay grounded. I have a wide-ranging taste that includes R&B, jazz, reggae, soft rock, pop, and hip hop. Check out the playlist below to see some of my favorite music.
-
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/35cJ2lkFfmFFXDldwfNQD3?utm_source=generator&amp;theme=0" width="100%" height="352" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
-
-</iframe>
-
-------------------------------------------------------------------------
-
 ## {{< fa mitten >}} Crocheting
 
 I started crocheting four years ago as a creative way to unwind and stay present and it's become one of my favorite pastimes! I enjoy crocheting at the beach, in the park, or during long car and plane rides. Some of the things I’ve made are shirts, bags, and beanies – check out my most recent and ongoing creations below.
@@ -73,3 +62,14 @@ Studying abroad in Italy during Fall 2024 gave me the opportunity to fulfill a l
 :::
 
 ------------------------------------------------------------------------
+
+## {{< fa music >}} Music
+
+Music is one of my favorite ways to relax, have fun, and stay grounded. I have a wide-ranging taste that includes R&B, jazz, reggae, soft rock, pop, and hip hop. Check out the playlist below to see some of my favorite music.
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/35cJ2lkFfmFFXDldwfNQD3?utm_source=generator&amp;theme=0" width="100%" height="352" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+
+</iframe>
+
+------------------------------------------------------------------------
+
