@@ -8,11 +8,12 @@ toc: false
 
 Through the [EUREKA Program](https://eureka.csep.ucsb.edu/), I interned in Dr. [Scott Jasechko’s](https://bren.ucsb.edu/people/scott-jasechko) hydrogeology lab, where I worked on building a 3D model of aquifer units within the Dakota Aquifer system in South Dakota.
 
-Groundwater is an essential resource, supplying nearly half of the world’s drinking water and much of its irrigation. In South Dakota, over 70% of people rely on groundwater, yet up-to-date maps of aquifers in the region are lacking. My project aimed to help fill that gap.
+Groundwater is an essential resource, supplying nearly half of the world’s drinking water and much of its irrigation. In South Dakota, over 70% of people rely on groundwater, yet up-to-date maps of aquifers in the region are lacking. My project aimed to help fill that gap. Our goal was to improve mapping of these subsurface water systems by building a 3D representation of aquifer units within this system.
 
-I worked with lithological well log data, performing extensive data cleaning in RStudio before modeling the aquifer layers using ArcGIS Pro.
 
-Some of the code used for the cleaning of data is shown below
+Using RStudio, I cleaned and prepared a large lithological well log dataset to identify usable wells, locate aquifer top/bottom depths, and prepare data for 3D modeling in ArcGIS Pro. Below are key excerpts from my code and a summary of what they do:
+
+We began data analysis in R by establishing whether each aquifer unit had enough data to be used for mapping. Below is an example of code used to distinguish how many unique wells were present in the Dakota Aquifer.
 
 ```{r}
 #| output: false
@@ -35,22 +36,15 @@ summary_wells_aquifer <- unique_wells %>%
 dakota <- unique_wells %>% 
   filter(aquifer == "DAKOTA") # Use the `filter()` function to keep only wells that are drilled in the aquifer unit "Dakota" 
 
-# Tidy the file for ArcPro (limit the number of columns) 
-dakota_arcpro <- dakota %>% 
-  select(location, aquifer, latitude_dd, longitude_dd) 
-
-# Use `write_tsv()` to write the file 
-# Use `here()` to tell R where to write the file (in our 'data_output' folder)
-
-write_tsv(dakota_arcpro, here::here ("data_output", "dakota_wells.txt"))
 
 ```
+
+To deepen our analysis, we searched for additional entries related to the Dakota Aquifer by using R to detect any instances of “dak” in the description column. We then combined these new records with our existing dataset and performed further data cleaning to prepare it for mapping. Follow the annotated code below to see the outlined process.
 
 ```{r}
 #| output: false
 #| eval: false
 ---
-#Exploring the data
 #How can we get more unique wells (if needed) for the Dakota Aquifer unit (hint: the 'description' column)? 
 
 dakota_all <- all_data %>% 
@@ -91,9 +85,33 @@ dak_tidy3 <- dak_tidy2 %>%
 dak_tidy4 <- dak_tidy3 %>% 
   distinct(well_id, .keep_all = TRUE)
 
+```
+
+Next, we checked whether each well record included both the top and bottom boundaries of the aquifer unit. When this information was available, we created separate files for the top and bottom depths to prepare the data for mapping.
+
+```{r}
+#| output: false
+#| eval: false
+---
 #Determining whether the well was drilled through the aquifer (so we have an accurate start and end) or if the bottom of the well is when drilling ended
 dak_tidy5 <- dak_tidy4 %>% 
   mutate(end_dak= ifelse(total_depth == dak_bottom, "TRUE", "FALSE" ))
+
+#Making a separate file that includes only the tops of the Dakota
+
+dak_tops <- dak_tidy5 %>% 
+  select(well_id, latitude_dd, longitude_dd, dak_top, ground_elevation, description)
+
+#Making a separate file that includes only the known bottoms of the Dakota
+
+dak_bot <- dak_tidy5 %>% 
+  filter(end_dak == "FALSE")
 ```
 
-Our work resulted in a 3D rendering of three major aquifer units, which marks a valuable starting point for future research on water resources in the region. If you want to learn more about this research, visit this [site](https://lbraconilazarini.wixsite.com/3d-model-dakota-aqui)
+Files were then tidied and prepared for mapping in ArcGIS Pro. Once the cleaned and formatted data were finalized, we brought them into ArcGIS Pro to visualize the aquifer units. We repeated this process for eight aquifer units, ultimately selecting three for the final model based on data quality and completeness.
+
+Our work resulted in a 3D rendering of three major aquifer units, which marks a valuable starting point for future research on water resources in the region.  The final maps are pictured below.
+
+
+
+If you want to learn more about this research, visit this [site](https://lbraconilazarini.wixsite.com/3d-model-dakota-aqui)

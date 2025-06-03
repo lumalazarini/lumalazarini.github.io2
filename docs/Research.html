@@ -181,9 +181,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="eureka-scholars-program" class="level2">
 <h2 class="anchored" data-anchor-id="eureka-scholars-program">Eureka Scholars Program</h2>
 <p>Through the <a href="https://eureka.csep.ucsb.edu/">EUREKA Program</a>, I interned in Dr.&nbsp;<a href="https://bren.ucsb.edu/people/scott-jasechko">Scott Jasechko’s</a> hydrogeology lab, where I worked on building a 3D model of aquifer units within the Dakota Aquifer system in South Dakota.</p>
-<p>Groundwater is an essential resource, supplying nearly half of the world’s drinking water and much of its irrigation. In South Dakota, over 70% of people rely on groundwater, yet up-to-date maps of aquifers in the region are lacking. My project aimed to help fill that gap.</p>
-<p>I worked with lithological well log data, performing extensive data cleaning in RStudio before modeling the aquifer layers using ArcGIS Pro.</p>
-<p>Some of the code used for the cleaning of data is shown below</p>
+<p>Groundwater is an essential resource, supplying nearly half of the world’s drinking water and much of its irrigation. In South Dakota, over 70% of people rely on groundwater, yet up-to-date maps of aquifers in the region are lacking. My project aimed to help fill that gap. Our goal was to improve mapping of these subsurface water systems by building a 3D representation of aquifer units within this system.</p>
+<p>Using RStudio, I cleaned and prepared a large lithological well log dataset to identify usable wells, locate aquifer top/bottom depths, and prepare data for 3D modeling in ArcGIS Pro. Below are key excerpts from my code and a summary of what they do:</p>
+<p>We began data analysis in R by establishing whether each aquifer unit had enough data to be used for mapping. Below is an example of code used to distinguish how many unique wells were present in the Dakota Aquifer.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#create new distinct file to discover how many unique wells there are</span></span>
@@ -201,65 +201,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># How many unique wells do we have in the Dakota Aquifer unit specifically?</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>dakota <span class="ot">&lt;-</span> unique_wells <span class="sc">%&gt;%</span> </span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(aquifer <span class="sc">==</span> <span class="st">"DAKOTA"</span>) <span class="co"># Use the `filter()` function to keep only wells that are drilled in the aquifer unit "Dakota" </span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy the file for ArcPro (limit the number of columns) </span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>dakota_arcpro <span class="ot">&lt;-</span> dakota <span class="sc">%&gt;%</span> </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location, aquifer, latitude_dd, longitude_dd) </span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Use `write_tsv()` to write the file </span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Use `here()` to tell R where to write the file (in our 'data_output' folder)</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">write_tsv</span>(dakota_arcpro, here<span class="sc">::</span><span class="fu">here</span> (<span class="st">"data_output"</span>, <span class="st">"dakota_wells.txt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(aquifer <span class="sc">==</span> <span class="st">"DAKOTA"</span>) <span class="co"># Use the `filter()` function to keep only wells that are drilled in the aquifer unit "Dakota" </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>To deepen our analysis, we searched for additional entries related to the Dakota Aquifer by using R to detect any instances of “dak” in the description column. We then combined these new records with our existing dataset and performed further data cleaning to prepare it for mapping. Follow the annotated code below to see the outlined process.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Exploring the data</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#How can we get more unique wells (if needed) for the Dakota Aquifer unit (hint: the 'description' column)? </span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>dakota_all <span class="ot">&lt;-</span> all_data <span class="sc">%&gt;%</span> </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">keep =</span> <span class="fu">ifelse</span>(<span class="fu">str_detect</span>(all_data<span class="sc">$</span>description, <span class="st">"DAK"</span>), <span class="st">"keep"</span>, <span class="cn">NA</span>)) <span class="co">#detect "dak" in well description and create new colun categorized either "keep" or NA</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># How many observations is this? </span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>dakota_obs <span class="ot">&lt;-</span> dakota_all <span class="sc">%&gt;%</span> </span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(keep <span class="sc">==</span> <span class="st">"keep"</span>) <span class="co"># use the `filter()` function to keep only wells that we identified that have the Dakota in their description </span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># How many unique wells do these observations represent? </span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>dakota_wells <span class="ot">&lt;-</span> dakota_obs <span class="sc">%&gt;%</span> </span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(location, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Removing wells from the obs files that do not have a location, latitude, or longitude</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>dak_tidy1 <span class="ot">&lt;-</span> dakota_obs <span class="sc">%&gt;%</span> </span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(location)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(latitude_dd)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(total_depth))</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#Tidying the information even more by selecting only columns that will be useful for our project</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#Renaming the location column to well_id for a better description</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>dak_tidy2 <span class="ot">&lt;-</span> dak_tidy1 <span class="sc">%&gt;%</span> </span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location, latitude_dd, longitude_dd, drill_date, aquifer, ground_elevation, total_depth, begin_depth, end_depth, description) <span class="sc">%&gt;%</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">well_id=</span>location)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping by unique well ID's to group the locations that have dakota observations in multiple layers</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating new columns that display the top and bottom of the wells and locations</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>dak_tidy3 <span class="ot">&lt;-</span> dak_tidy2 <span class="sc">%&gt;%</span> </span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(well_id) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dak_top =</span> <span class="fu">min</span>(begin_depth)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dak_bottom =</span> <span class="fu">max</span>( end_depth))</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co">#Gathering well locations (one row represents one well)</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>dak_tidy4 <span class="ot">&lt;-</span> dak_tidy3 <span class="sc">%&gt;%</span> </span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(well_id, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co">#Determining whether the well was drilled through the aquifer (so we have an accurate start and end) or if the bottom of the well is when drilling ended</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>dak_tidy5 <span class="ot">&lt;-</span> dak_tidy4 <span class="sc">%&gt;%</span> </span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">end_dak=</span> <span class="fu">ifelse</span>(total_depth <span class="sc">==</span> dak_bottom, <span class="st">"TRUE"</span>, <span class="st">"FALSE"</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#How can we get more unique wells (if needed) for the Dakota Aquifer unit (hint: the 'description' column)? </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>dakota_all <span class="ot">&lt;-</span> all_data <span class="sc">%&gt;%</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">keep =</span> <span class="fu">ifelse</span>(<span class="fu">str_detect</span>(all_data<span class="sc">$</span>description, <span class="st">"DAK"</span>), <span class="st">"keep"</span>, <span class="cn">NA</span>)) <span class="co">#detect "dak" in well description and create new colun categorized either "keep" or NA</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># How many observations is this? </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>dakota_obs <span class="ot">&lt;-</span> dakota_all <span class="sc">%&gt;%</span> </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(keep <span class="sc">==</span> <span class="st">"keep"</span>) <span class="co"># use the `filter()` function to keep only wells that we identified that have the Dakota in their description </span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># How many unique wells do these observations represent? </span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>dakota_wells <span class="ot">&lt;-</span> dakota_obs <span class="sc">%&gt;%</span> </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(location, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Removing wells from the obs files that do not have a location, latitude, or longitude</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>dak_tidy1 <span class="ot">&lt;-</span> dakota_obs <span class="sc">%&gt;%</span> </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(location)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(latitude_dd)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(total_depth))</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#Tidying the information even more by selecting only columns that will be useful for our project</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#Renaming the location column to well_id for a better description</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>dak_tidy2 <span class="ot">&lt;-</span> dak_tidy1 <span class="sc">%&gt;%</span> </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location, latitude_dd, longitude_dd, drill_date, aquifer, ground_elevation, total_depth, begin_depth, end_depth, description) <span class="sc">%&gt;%</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">well_id=</span>location)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping by unique well ID's to group the locations that have dakota observations in multiple layers</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating new columns that display the top and bottom of the wells and locations</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>dak_tidy3 <span class="ot">&lt;-</span> dak_tidy2 <span class="sc">%&gt;%</span> </span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(well_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dak_top =</span> <span class="fu">min</span>(begin_depth)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dak_bottom =</span> <span class="fu">max</span>( end_depth))</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co">#Gathering well locations (one row represents one well)</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>dak_tidy4 <span class="ot">&lt;-</span> dak_tidy3 <span class="sc">%&gt;%</span> </span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(well_id, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Our work resulted in a 3D rendering of three major aquifer units, which marks a valuable starting point for future research on water resources in the region. If you want to learn more about this research, visit this <a href="https://lbraconilazarini.wixsite.com/3d-model-dakota-aqui">site</a></p>
+<p>Next, we checked whether each well record included both the top and bottom boundaries of the aquifer unit. When this information was available, we created separate files for the top and bottom depths to prepare the data for mapping.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Determining whether the well was drilled through the aquifer (so we have an accurate start and end) or if the bottom of the well is when drilling ended</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>dak_tidy5 <span class="ot">&lt;-</span> dak_tidy4 <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">end_dak=</span> <span class="fu">ifelse</span>(total_depth <span class="sc">==</span> dak_bottom, <span class="st">"TRUE"</span>, <span class="st">"FALSE"</span> ))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a separate file that includes only the tops of the Dakota</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>dak_tops <span class="ot">&lt;-</span> dak_tidy5 <span class="sc">%&gt;%</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(well_id, latitude_dd, longitude_dd, dak_top, ground_elevation, description)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a separate file that includes only the known bottoms of the Dakota</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>dak_bot <span class="ot">&lt;-</span> dak_tidy5 <span class="sc">%&gt;%</span> </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(end_dak <span class="sc">==</span> <span class="st">"FALSE"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Files were then tidied and prepared for mapping in ArcGIS Pro. Once the cleaned and formatted data were finalized, we brought them into ArcGIS Pro to visualize the aquifer units. We repeated this process for eight aquifer units, ultimately selecting three for the final model based on data quality and completeness.</p>
+<p>Our work resulted in a 3D rendering of three major aquifer units, which marks a valuable starting point for future research on water resources in the region. The final maps are pictured below.</p>
+<p>If you want to learn more about this research, visit this <a href="https://lbraconilazarini.wixsite.com/3d-model-dakota-aqui">site</a></p>
 
 
 </section>
