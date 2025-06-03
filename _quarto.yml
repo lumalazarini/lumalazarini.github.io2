@@ -22,9 +22,8 @@ website:
       background: dark
 format:
   html:
-    theme: 
-      - style.scss
-    css: styles.css
+    theme: style.scss
+    mainfont: Playfair Display
     fontcolor: $brown
     toc: true
     page-layout: full
