@@ -108,8 +108,6 @@ dak_bot <- dak_tidy5 %>%
   filter(end_dak == "FALSE")
 ```
 
-Files were then tidied and prepared for mapping in ArcGIS Pro. Below is an example of the file including dakota bottoms for mapping. This file only includes the well ID, latitude, longitude, and the height the aquifer bottom was recorded in feet. 
-
 The files were then tidied and prepared for mapping in ArcGIS Pro. Below is an example of one of the data frames used for mapping the Dakota aquifer bottoms. This file includes only the well ID, latitude, longitude, and the recorded depth (in feet) of the aquifer bottom. It’s important to keep the files simple and clean so that ArcGIS doesn’t misread or have issues processing the data.
 
 ![](media/dak_bottoms.jpg)

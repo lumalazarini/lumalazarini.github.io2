@@ -23,7 +23,7 @@ website:
 format:
   html:
     theme: style.scss
-    mainfont: Playfair Display
+    mainfont: Lato
     fontcolor: $brown
     toc: true
     page-layout: full
