@@ -10,7 +10,7 @@ website:
       - href: index.qmd
         text: Home
       - href: lumalazarini.github.io2.qmd
-        text: Interests
+        text: About me
       - href: Research.qmd
         text: Research
       - href: courses.qmd
