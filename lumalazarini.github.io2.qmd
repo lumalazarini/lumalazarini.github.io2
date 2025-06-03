@@ -1,5 +1,5 @@
 ---
-title: "Interests and Hobbies"
+title: "About me: Interests and Hobbies"
 format: html
 toc: false
 lightbox:
@@ -50,7 +50,7 @@ The beach is my happy place. It’s where I go to clear my mind and unwind from 
 
 ## {{< fa plane >}} Traveling
 
-Studying abroad in Italy during Fall 2024 gave me the opportunity to fulfill a lifelong dream of exploring Europe. I visited unforgettable places like London, Paris, Nice, Croatia, Ibiza, and many cities across Italy. Below is a glimpse into four months of travel across Europe.
+Studying abroad in Italy during Fall 2024 gave me the opportunity to fulfill a lifelong dream of exploring Europe. I visited unforgettable places like London, Paris, Nice, Croatia, Ibiza, and many cities across Italy. Below is a glimpse into four months of travel across Europe, as well as my spring break trip to Brazil.
 
 ::: {layout="[[1, 1, 1, 1]]"}
 ![](media/cinqueterre.jpeg){group="trip" description="Cinque Terre, Italy"}
