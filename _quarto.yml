@@ -15,7 +15,7 @@ website:
         text: Research
       - href: courses.qmd
         text: Courses
-      - href: resume2.pdf
+      - href: luma_resume.pdf
         text: Resume
         target: _blank
     page-footer: 
